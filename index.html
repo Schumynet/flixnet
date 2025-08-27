@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>Mini Sito Film</title>
+  <style>
+    body { font-family: Arial; background: #111; color: #eee; text-align: center; }
+    input { padding: 10px; width: 300px; margin-top: 20px; }
+    .results { display: flex; flex-wrap: wrap; justify-content: center; margin-top: 20px; }
+    .card { background: #222; margin: 10px; padding: 10px; width: 200px; border-radius: 8px; }
+    img { width: 100%; border-radius: 4px; }
+  </style>
+</head>
+<body>
+  <h1>🎬 Cerca Film o Serie</h1>
+  <input type="text" id="searchInput" placeholder="Scrivi un titolo..." />
+  <div class="results" id="results"></div>
+
+  <script>
+    const apiKey = 'TUO_API_KEY_TMDB';
+    const input = document.getElementById('searchInput');
+    const resultsDiv = document.getElementById('results');
+
+    input.addEventListener('keyup', async (e) => {
+      if (e.key === 'Enter') {
+        const query = input.value;
+        const res = await fetch(`https://api.themoviedb.org/3/search/multi?api_key=${apiKey}&query=${query}`);
+        const data = await res.json();
+        resultsDiv.innerHTML = '';
+        data.results.forEach(item => {
+          if (item.poster_path) {
+            resultsDiv.innerHTML += `
+              <div class="card">
+                <img src="https://image.tmdb.org/t/p/w200${item.poster_path}" />
+                <h3>${item.title || item.name}</h3>
+                <p>${item.overview.slice(0, 100)}...</p>
+              </div>
+            `;
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>

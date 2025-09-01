@@ -1,0 +1,103 @@
+
+/* ------------------------------------------------------------------ */
+/*  DarkFlix – Dark theme, minimal & responsive                      */
+/* ------------------------------------------------------------------ */
+
+:root {
+  --bg-main: #0b0c10;
+  --bg-card: #1a1c23;
+  --bg-hover: #21232c;
+  --text-primary: #c5c6c7;
+  --text-secondary: #66fcf1;
+  --accent: #45a29e;
+  --radius: 8px;
+  --transition: .2s ease;
+  --font-sans: "Inter", system-ui, -apple-system, BlinkMacSystemFont,
+              "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+/* reset */
+*,
+*::before,
+*::after { box-sizing:border-box; margin:0; padding:0; }
+
+html { font-family: var(--font-sans); background: var(--bg-main); color: var(--text-primary); }
+a { color:inherit; text-decoration:none; }
+img { display:block; max-width:100%; }
+
+header {
+  background: var(--bg-card);
+  padding: .75rem 1.5rem;
+  display:flex; align-items:center; justify-content:space-between;
+  box-shadow:0 2px 4px rgba(0,0,0,.3);
+}
+header .logo { font-size:1.5rem; font-weight:700; color:var(--accent); }
+
+nav { display:flex; gap:1rem; }
+nav a {
+  padding:.4rem .8rem;
+  border-radius:var(--radius);
+  transition:background var(--transition);
+}
+nav a:hover,
+nav a.active { background:var(--bg-hover); color:var(--text-secondary); }
+
+main { flex:1; padding:1.5rem; }
+
+.grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fill, minmax(150px,1fr));
+  gap:1rem;
+}
+.card {
+  background:var(--bg-card);
+  border-radius:var(--radius);
+  overflow:hidden;
+  transition:transform var(--transition), box-shadow var(--transition);
+}
+.card:hover {
+  transform:translateY(-4px);
+  box-shadow:0 8px 16px rgba(0,0,0,.5);
+}
+.card img { aspect-ratio:2/3; object-fit:cover; }
+.card .info {
+  padding:.5rem;
+  text-align:center;
+  font-size:.9rem;
+}
+.card .info h3 {
+  font-size:.95rem;
+  white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+}
+
+/* Title page */
+.title-container { max-width:960px; margin:0 auto; display:flex; flex-direction:column; gap:2rem; }
+.title-header { display:flex; gap:1.5rem; }
+.title-header img { width:200px; border-radius:var(--radius); box-shadow:0 4px 12px rgba(0,0,0,.7); }
+.title-header .meta { display:flex; flex-direction:column; gap:.5rem; }
+.title-header h1 { font-size:2rem; color:var(--text-secondary); }
+.title-header p { line-height:1.5; }
+.actions { display:flex; gap:.8rem; }
+.actions button {
+  background:var(--accent); color:#0b0c10; border:none;
+  padding:.6rem 1rem; border-radius:var(--radius);
+  cursor:pointer; transition:background var(--transition);
+}
+.actions button:hover { background:var(--text-secondary); }
+
+/* Season / episode selector */
+.selector { display:flex; flex-direction:column; gap:.5rem; }
+.selector label { font-size:.9rem; }
+.selector select {
+  width:fit-content; padding:.4rem .6rem;
+  border-radius:var(--radius); border:1px solid #333;
+  background:var(--bg-card); color:var(--text-primary);
+}
+
+/* Section titles */
+section > h2 { margin:1rem 0 .5rem; font-size:1.4rem; color:var(--text-secondary); }
+
+@media (max-width:640px) {
+  .title-header { flex-direction:column; align-items:center; }
+  .title-header img { width:150px; }
+}

@@ -1,0 +1,36 @@
+
+<div class="title-container">
+  <!-- Header con poster e metadati -->
+  <div class="title-header">
+    <img id="poster" src="" alt="Poster">
+    <div class="meta">
+      <h1 id="title"></h1>
+      <p id="description"></p>
+
+      <div class="actions">
+        <button id="btn-fav">Aggiungi ai preferiti</button>
+        <button id="btn-continue">Continua a guardare</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Player -->
+  <div id="player-wrapper">
+    <div id="video-player"></div>
+  </div>
+
+  <!-- Selettori (solo per serie) -->
+  <section id="episode-section" style="display:none;">
+    <div class="selector">
+      <label for="season-select">Stagione</label>
+      <select id="season-select"></select>
+    </div>
+    <div class="selector">
+      <label for="episode-select">Episodio</label>
+      <select id="episode-select"></select>
+    </div>
+  </section>
+</div>
+
+<script src="assets/js/player.js"></script>
+<script src="assets/js/app.js"></script>
